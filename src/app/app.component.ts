@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router'; // Importer Router
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -7,9 +6,9 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'] // Correction ici
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ngrx_test';
+  title = 'Papernest Technical Test';
 
 }
