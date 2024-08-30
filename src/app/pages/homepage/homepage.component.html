@@ -1,0 +1,99 @@
+<div class="flex flex-col md:flex-row h-screen bg-gray-100 p-8 gap-8">
+  <!-- Left Block -->
+  <div class="flex-1 bg-white p-8 shadow-lg rounded-lg overflow-y-auto">
+    <div class="flex flex-col items-center justify-center h-full">
+      <!-- Logo Section -->
+      <div class="flex justify-center mb-4">
+        <img src="https://d11o8pt3cttu38.cloudfront.net/wp-content/themes/pn-origami/assets/papernest/images/pn-logo.svg" alt="Company Logo" class="w-32">
+      </div>
+      <!-- Title Section -->
+      <h1 class="text-4xl font-bold text-primary mb-2">Frontend Angular Technical Test</h1>
+      <h2 class="text-xl text-gray-600 mb-4">By Antoine Peltre</h2>
+      <div class="w-24 border-b-2 border-primary mb-4"></div> 
+      <!-- Start Button -->
+      <button
+        class="bg-primary text-white px-6 py-3 rounded hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
+        (click)="navigateTo('tasks')">
+        Start
+      </button>
+    </div>
+  </div>
+
+  <!-- Right Block -->
+  <div class="flex-1 bg-white p-8 shadow-lg rounded-lg overflow-y-auto">
+    <div class="h-full">
+      <!-- Main Title -->
+      <h2 class="text-3xl font-semibold text-primary mb-4">To-Do List Application with Angular and TypeScript</h2>
+
+      <!-- Objective Section -->
+      <h3 class="text-xl font-semibold text-gray-800 mb-2">Objective:</h3>
+      <p class="text-gray-700 mb-4">
+        Create a dynamic/reactive to-do list application using Angular and TypeScript. This application should
+        allow users to add, edit, delete, and mark tasks as completed. Additionally, the application should
+        persist tasks in local storage and be optimized for performance.
+      </p>
+
+      <!-- Requirements Section -->
+      <h3 class="text-xl font-semibold text-gray-800 mb-2">Requirements:</h3>
+      <div class="text-gray-700 mb-4">
+        <!-- Functionality -->
+        <h4 class="font-semibold mb-1">Functionality:</h4>
+        <ul class="list-disc list-inside mb-4">
+          <li class="text-green-500">Users should be able to add new tasks.</li>
+          <li class="text-green-500">Users should be able to edit existing tasks.</li>
+          <li class="text-green-500">Users should be able to delete tasks.</li>
+          <li class="text-green-500">Users should be able to mark tasks as completed or uncompleted.</li>
+          <li class="text-green-500">Persist the tasks in local storage after a page refresh.</li>
+        </ul>
+
+        <!-- Technical Specifications -->
+        <h4 class="font-semibold mb-1">Technical Specifications:</h4>
+        <ul class="list-disc list-inside mb-4">
+          <li class="text-green-500">Use Angular for the front-end framework.</li>
+          <li class="text-green-500">Use TypeScript to define component props and state, ensuring type safety.</li>
+          <li class="text-green-500">Manage state effectively, using hooks or a state management library like NgRx.</li>
+          <li class="text-green-500">Optimize the application to minimize unnecessary re-renders.</li>
+        </ul>
+
+        <!-- Performance Optimization -->
+        <h4 class="font-semibold mb-1">Performance Optimization:</h4>
+        <ul class="list-disc list-inside mb-4">
+          <li class="text-green-500">Implement performance optimization techniques, such as lazy loading for components or virtualizing long lists if applicable.</li>
+          <li class="text-green-500">Ensure that the application remains responsive and fast, even with a large number of tasks.</li>
+        </ul>
+
+        <!-- User Interface -->
+        <h4 class="font-semibold mb-1">User Interface:</h4>
+        <ul class="list-disc list-inside mb-4">
+          <li class="text-green-500">Provide a simple but user-friendly UI/UX.</li>
+          <li class="text-green-500">Use CSS or a CSS-in-JS solution to style the application.</li>
+        </ul>
+
+        <!-- Code Quality -->
+        <h4 class="font-semibold mb-1">Code Quality:</h4>
+        <ul class="list-disc list-inside mb-4">
+          <li class="text-green-500">Write clean, readable, and maintainable code.</li>
+          <li class="text-green-500">Include comments and documentation where necessary.</li>
+          <li class="text-green-500">Use TypeScript features effectively, such as interfaces and type definitions.</li>
+        </ul>
+
+        <!-- Bonus Points -->
+        <h4 class="font-semibold mb-1">Bonus Points:</h4>
+        <ul class="list-disc list-inside mb-4">
+          <li class="text-green-500">Implement a search or filter feature to allow users to find specific tasks.</li>
+          <li class="text-green-500">Implement a TTL (time to live) for the tasks to persist.</li>
+          <li class="text-red-500">Include unit tests for key components using a testing framework like Jest.</li>
+          <li class="text-green-500">Implement drag-and-drop functionality to reorder tasks.</li>
+        </ul>
+
+        <!-- Submission Guidelines -->
+        <h4 class="font-semibold mb-1">Submission Guidelines:</h4>
+        <ul class="list-disc list-inside">
+          <li class="text-green-500">Provide a link to a GitHub repository with your completed application.</li>
+          <li class="text-green-500">Include a README file with instructions on how to set up and run the application.</li>
+          <li class="text-green-500">Ensure all dependencies are listed in the package.json file.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

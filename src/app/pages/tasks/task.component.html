@@ -1,0 +1,126 @@
+<div class="p-8 bg-gray-100 min-h-screen">
+  <!-- Header with back navigation -->
+  <header class="p-4 mb-6">
+    <div (click)="navigateBack()" class="flex items-center cursor-pointer">
+      <button class="text-primary hover:text-primary-dark focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+      </button>
+      <h1 class="text-xl font-semibold text-gray-800">Back</h1>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <div class="bg-white shadow-md rounded-lg p-6 max-w-5xl mx-auto">
+    <!-- Filters section title -->
+    <div class="mb-6">
+      <h2 class="text-2xl font-semibold text-gray-800">Filters</h2>
+    </div>
+
+    <!-- Search filter -->
+    <div class="mb-6">
+      <input type="text" placeholder="Search tasks..."
+        class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+        [formControl]="searchQuery" />
+    </div>
+
+    <!-- Filters section -->
+    <div class="mb-6">
+      <div class="flex items-center space-x-4">
+        <!-- Expired filter -->
+        <div class="flex items-center">
+          <input type="checkbox" class="form-checkbox h-5 w-5 text-primary"
+            [checked]="showExpiredOnly" (change)="onShowExpiredOnlyChange($event)" />
+          <span class="ml-2 text-gray-700">Show expired tasks only</span>
+        </div>
+
+        <!-- Completed filter -->
+        <div class="flex items-center">
+          <input type="checkbox" class="form-checkbox h-5 w-5 text-primary"
+            [checked]="showCompletedOnly" (change)="onShowCompletedOnlyChange($event)" />
+          <span class="ml-2 text-gray-700">Show completed tasks only</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Divider line -->
+    <hr class="my-6 border-gray-300" />
+
+    <!-- Task list -->
+    <ng-container *ngIf="vm$ | async as vm; else spinner">
+      <!-- Add task form -->
+      <div class="flex items-center mb-6">
+        <form [formGroup]="form" class="flex w-full">
+          <input type="text" placeholder="Add a new task..."
+            class="flex-1 p-3 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-primary"
+            (keyup.enter)="addTask(vm.tasks)" [formControlName]="'title'" />
+          <button (click)="addTask(vm.tasks)"
+            class="bg-primary text-white px-6 py-3 rounded-r-md hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary"
+            required>
+            Add
+          </button>
+        </form>
+      </div>
+
+      <ng-container *ngIf="!vm.loading; else spinner">
+        <div cdkDropList class="example-list overflow-y-auto" style="max-height: 400px;" (cdkDropListDropped)="drop(vm.tasks, $event)">
+          <div *ngFor="let task of filteredTasks(vm.tasks)" cdkDrag
+            class="flex items-center mb-4 p-4 border border-gray-200 rounded-md shadow-sm cursor-move"
+            [ngClass]="{ 'bg-red-100': task.isExpired, 'bg-white': !task.isExpired }">
+
+            <!-- Display mode -->
+            <ng-container *ngIf="!vm.isEditTaskId || vm.isEditTaskId !== task.id">
+              <input type="checkbox" class="form-checkbox h-5 w-5 text-primary mr-4" [checked]="task.completed"
+                (change)="toggleComplete(task)" />
+              
+              <div class="flex-1">
+                <!-- Task title -->
+                <p class="text-lg {{ task.completed ? 'line-through text-gray-400' : '' }}">
+                  {{ task.title }}
+                </p>
+                
+                <!-- Deadline section -->
+                <div class="mt-1" *ngIf="task.deadline">
+                  <span class="text-sm text-gray-500">Deadline: </span>
+                  <span class="text-sm text-black">{{ task.deadline | date: 'dd/MM/yyyy' }}</span>
+                </div>
+              </div>
+            
+              <button (click)="editTask(task)" class="text-primary hover:text-primary-dark ml-4 focus:outline-none">
+                Edit
+              </button>
+            </ng-container>
+
+            <!-- Edit mode -->
+            <ng-container *ngIf="vm.isEditTaskId == task.id">
+              <form [formGroup]="editForm" class="flex flex-1 items-center space-x-2">
+                <input type="text" placeholder="Edit task title..."
+                  class="flex-1 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                  [formControlName]="'newTitle'" />
+                <input type="date"
+                  class="p-3 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-primary transition-colors duration-150"
+                  [formControlName]="'deadline'" />
+                <button (click)="saveTask(task)"
+                  class="bg-green-500 text-white px-6 py-3 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500">
+                  Save
+                </button>
+              </form>
+            </ng-container>
+
+            <!-- Delete button -->
+            <button (click)="deleteTask(task.id)" class="text-red-500 hover:text-red-600 ml-4 focus:outline-none">
+              Delete
+            </button>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+
+    <ng-template #spinner>
+      <main class="text-center py-8 text-gray-600">
+        Loading...
+      </main>
+    </ng-template>
+  </div>
+</div>
