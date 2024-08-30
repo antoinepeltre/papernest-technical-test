@@ -1,27 +1,51 @@
-# NgrxTest
+# Papernest Technical Test
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.1.
+## Description
 
-## Development server
+This is a technical test project for Papernest. It is a dynamic to-do list application built using Angular and TypeScript. The application allows users to manage tasks efficiently with functionalities including adding, editing, deleting, and marking tasks as completed. The application also persists tasks in local storage.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Live Demo
 
-## Code scaffolding
+You can access the live application at: [Papernest Technical Test](https://papernest-technical-test.onrender.com/)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Features
 
-## Build
+- **Task Management**: Add, edit, delete, and mark tasks as completed.
+- **Local Storage**: Persist tasks in local storage to retain data across page refreshes.
+- **Drag-and-Drop**: Reorder tasks using drag-and-drop functionality.
+- **Filter Tasks**: Filter tasks to show only expired or completed ones.
+- **Deadline Management**: Manage deadlines for tasks and verify if a task is expired based on its deadline.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Installation
 
-## Running unit tests
+To run this project locally, follow these steps:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. **Clone the Repository**:
 
-## Running end-to-end tests
+    ```bash
+    git clone https://github.com/antoinepeltre/papernest-technical-test.git
+    cd papernest-technical-test
+    ```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+2. **Install Dependencies**:
 
-## Further help
+    npm install
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+3. **Run the Application**:
+
+    Start the development server:
+
+    ```bash
+    ng serve
+    ```
+
+    Navigate to `http://localhost:4200` in your browser to view the application.
+
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+Feel free to further customize this README to suit any additional details or preferences you have!
