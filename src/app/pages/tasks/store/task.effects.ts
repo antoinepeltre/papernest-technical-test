@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { exhaustMap, withLatestFrom, tap, switchMap } from 'rxjs/operators';
+import { exhaustMap, withLatestFrom, tap, switchMap, map, catchError } from 'rxjs/operators';
 import { tasksEvents } from './task.events';
 import { Task } from '../../../models/task';
 import { Store } from '@ngrx/store';
@@ -20,13 +20,16 @@ export class TasksEffects {
     this.actions$.pipe(
       ofType(tasksEvents.loadTaskListRequested),
       switchMap(() => {
-        try {
-          const tasksJson = localStorage.getItem(this.TASKS_KEY);
-          const tasks: Task[] = tasksJson ? JSON.parse(tasksJson) : [];
-          return of(tasksEvents.loadTaskListSucceeded({ tasks }));
-        } catch (error) {
-          return of(tasksEvents.loadTaskListFailed({ error: new Error('Failed to load tasks from localStorage') }));
-        }
+        const tasksJson = localStorage.getItem(this.TASKS_KEY);
+
+        return tasksJson
+          ? of(JSON.parse(tasksJson)).pipe(
+            map((tasks: Task[]) => tasksEvents.loadTaskListSucceeded({ tasks })),
+            catchError((error) =>
+              of(tasksEvents.loadTaskListFailed({ error: new Error('Failed to parse tasks from localStorage') }))
+            )
+          )
+          : of(tasksEvents.loadTaskListSucceeded({ tasks: [] }));
       })
     )
   );

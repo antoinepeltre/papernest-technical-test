@@ -3,11 +3,11 @@ import { TaskComponent } from "./task.component";
 import { taskListResolver } from "./task.resolver";
 
 export const taskRoutes: Routes = [
-    {
-      path: '',
-      component: TaskComponent,
-      resolve: {
-        tasks: taskListResolver,
-      },
-    }
-  ];
+  {
+    path: '',
+    component: TaskComponent,
+    resolve: {
+      tasks: taskListResolver,
+    },
+  }
+];
